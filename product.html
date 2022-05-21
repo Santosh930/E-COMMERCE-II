@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <style>
+        #box{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+        }
+        #box>div{
+            border: 1px solid green;
+            margin: auto;
+            text-align: center;
+        }
+
+        img{
+            width: 250px;
+            height: 250px;
+        }
+        #navbar{
+            display: flex;
+            justify-content: space-between;
+            background-color: green;
+            margin-bottom: 40px;
+            height: 70px;
+            padding: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        
+        <div><a href="index.html"> Go to Admin Page</a></div>
+        <div  id="counter">
+
+            <h1>0</h1>
+    <button id="dec">Decriment</button>
+    <button id="inc"> Incriment</button>
+        </div>
+    </div>
+    <div id="box">
+
+    </div>
+
+    
+</body>
+</html>
+<script>
+    let productData=JSON.parse(localStorage.getItem("Products"))||[];
+    // console.log(productData);
+    
+     productData.forEach(function(el){
+
+      
+      let div=document.createElement("div");
+      let image=document.createElement("img");
+      image.src=el.image;
+      let name=document.createElement("p");
+      name.innerText=el.name;
+      let price=document.createElement("p");
+      price.innerText=el.price;
+      let btn1=document.createElement("button");
+      btn1.innerText="Remove";
+      btn1.style.cursor="pointer";
+      btn1.setAttribute("id","remove")
+
+      let btn2=document.createElement("button");
+      btn2.innerText="Sold";
+      btn2.style.cursor="pointer";
+      btn2.setAttribute("id",("sold"));
+
+    
+      
+     
+    div.append(image,name,price,btn1,btn2);
+    document.querySelector("#box").append(div);
+});
+
+   
+   function addToCart(){
+     console.log(data);
+     productData.push(el);
+     localStorage.setItem("items",JSON.stringify(productData));
+   }
+
+
+
+   var counter;
+    if(localStorage.getItem("counterNum")==null){
+        counter=0;
+    }
+    else
+    {
+        counter=localStorage.getItem("counterNum");
+    }
+    document.querySelector("h1").innerText=counter;
+    document.querySelector("#dec").addEventListener("click",decFun);
+    function decFun(){
+        counter--;
+        localStorage.setItem("counterNum",counter);
+        document.querySelector("h1").innerHTML=counter;
+    }
+    document.querySelector("h1").innerText=counter;
+    document.querySelector("#inc").addEventListener("click",incFun);
+    function incFun(){
+        counter++;
+        localStorage.setItem("counterNum",counter);
+        document.querySelector("h1").innerHTML=counter;
+    }
+
+     
+</script>

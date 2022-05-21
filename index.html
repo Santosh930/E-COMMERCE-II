@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 20px;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        
+        <button><a href="product.html"> Go to Product Page</a></button>
+    </div>
+    <form id="sain">
+        <input type="text" name="Product name" id="name" placeholder="Enter Product name"><br>
+        <input type="text" name="Category" id="category" placeholder="Enter Category"><br>
+        <input type="url" name="Image url" id="image" placeholder="Enter Image  url"><br>
+        <input type="number" name="Price" id="price" placeholder="Enter Price"><br>
+        <select name="Gender" id="gender">
+            <option value="---">select gender</option>
+            <option value="M">male</option>
+            <option value="F">female</option>
+            <option value="T">Transgender</option>
+        </select><br>
+        <select name="Sold" id="sold">
+            <option value="F">false</option>
+            <option value="T">true</option>
+        </select><br>
+        <input type="submit"  name="submit" id="add">
+       
+    </form>
+    
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit",myfunction);
+    var Data=JSON.parse(localStorage.getItem("Products"))||[];
+    
+    
+
+    // function myfunction(){
+        
+         
+    //     event.preventDefault();
+
+    //     let obj={
+    //     Product_name:document.querySelector("#name").value,
+    //      Category:document.querySelector("#category").value,
+    //      Image:document.querySelector("#image").value,
+    //     Price:document.querySelector("#price").value,
+    //    gender:document.querySelector("#gender").value,
+    //    Sold:document.querySelector("#sold").value
+    //      }
+    //       console.log(obj);
+    //     Data.push(obj);
+    //     console.log(Data);
+    //     localStorage.setItem("Products",JSON.stringify(Data));
+
+    // }
+
+    function Product(n,c,img,p,g,s){
+        this.name=n;
+        this.category=c;
+        this.image=img;
+        this.price=p;
+        this.gender=g;
+        this.sold=s;
+
+    }
+    
+    
+
+    function myfunction(e){
+        event.preventDefault();
+       
+        let form=document.getElementById("sain");
+
+         let name=form.name.value;
+        let category=form.category.value;
+        let image=form.image.value;
+        let price=form.price.value;
+        let gender=form.gender.value;
+        let sold=form.sold.value;
+        let p=new Product(name,category,image,price,gender,sold);
+        Data.push(p);
+
+        console.log(Data);
+        
+        localStorage.setItem("Products",JSON.stringify(Data));
+
+        
+    
+        
+
+
+        
+    }
+    
+    
+    
+
+</script>
